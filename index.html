@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Va Banque</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<main id="main_1">
+
+<div id="container">
+    <div id="column_1">
+        <h1 id="0">Naglowek</h1>
+        <input type="button" value="100" onclick="myfunction('1_100')" id="1_100"><br>
+        <input type="button" value="200" onclick="myfunction('1_200')" id="1_200"><br>
+        <input type="button" value="300" onclick="myfunction('1_300')" id="1_300"><br>
+        <input type="button" value="400" onclick="myfunction('1_400')" id="1_400"><br>
+        <input type="button" value="500" onclick="myfunction('1_500')" id="1_500">
+
+    </div>
+    <style float: left;></style>
+    <div id="column_2">
+        <h1 id="1">Naglowek</h1>
+        <input type="button" value="100" onclick="myfunction('2_100')" id="2_100"><br>
+        <input type="button" value="200" onclick="myfunction('2_200')" id="2_200"><br>
+        <input type="button" value="300" onclick="myfunction('2_300')" id="2_300"><br>
+        <input type="button" value="400" onclick="myfunction('2_400')" id="2_400"><br>
+        <input type="button" value="500" onclick="myfunction('2_500')" id="2_500">
+    </div>
+    <div id="column_3">
+        <h1 id="2">Naglowek</h1>
+        <input type="button" value="100" onclick="myfunction('3_100')" id="3_100"><br>
+        <input type="button" value="200" onclick="myfunction('3_200')" id="3_200"><br>
+        <input type="button" value="300" onclick="myfunction('3_300')" id="3_300"><br>
+        <input type="button" value="400" onclick="myfunction('3_400')" id="3_400"><br>
+        <input type="button" value="500" onclick="myfunction('3_500')" id="3_500">
+    </div>
+    <div id="column_4">
+        <h1 id="3">Naglowek</h1>
+        <input type="button" value="100" onclick="myfunction('4_100')" id="4_100"><br>
+        <input type="button" value="200" onclick="myfunction('4_200')" id="4_200"><br>
+        <input type="button" value="300" onclick="myfunction('4_300')" id="4_300"><br>
+        <input type="button" value="400" onclick="myfunction('4_400')" id="4_400"><br>
+        <input type="button" value="500" onclick="myfunction('4_500')" id="4_500">
+    </div>
+    <div id="column_5">
+        <h1 id="4">Naglowek</h1>
+        <input type="button" value="100" onclick="myfunction('5_100')" id="5_100"><br>
+        <input type="button" value="200" onclick="myfunction('5_200')" id="5_200"><br>
+        <input type="button" value="300" onclick="myfunction('5_300')" id="5_300"><br>
+        <input type="button" value="400" onclick="myfunction('5_400')" id="5_400"><br>
+        <input type="button" value="500" onclick="myfunction('5_500')" id="5_500">
+    </div> 
+</div>
+<style clear: both;></style>
+<div id="container_2" style="float: right;">
+    <div id="druzyny" >
+        <div id="Druzyna_1">
+        <button style="width: 25px; height: 25px; float: right;" onclick="edit_name(0)">✏️</button>
+        <p id="team_0">1 Osoba: 500pkt</p>
+        </div>
+
+        <div id="Druzyna_2">
+        <button style="width: 25px; height: 25px; float: right;" onclick="edit_name(1)">✏️</button>
+        <p id="team_1">1 Osoba: 500pkt</p>
+        </div>
+
+        <div id="Druzyna_3">
+        <button style="width: 25px; height: 25px; float: right;" onclick="edit_name(2)">✏️</button>
+        <p id="team_2">1 Osoba: 500pkt</p>
+        </div>
+
+        <div id="Druzyna_4">
+        <button style="width: 25px; height: 25px; float: right;" onclick="edit_name(3)">✏️</button>
+        <p id="team_3">1 Osoba: 500pkt</p>
+        </div>
+    </div>    
+
+</div>
+<div id="buttons" style="float: right;">
+    <center>
+ 
+   <button style=' width: 200px; height: 50px;' onclick="next_round()">Nastepna runda</button><br>
+    <!--   <button style="width: 50px; height: 40px;">Film</button><button style="width: 50px; height: 40px;" onclick="playMusic()">Audio</button>
+   
+        --->
+     <p style="font-size: 12px;">Tlo autorstwa coolvector<br> na Freepik.</p>
+</center>
+</div>
+<h1 id="naglowek_final">Naglowek finalowy</h1>
+<input id='final' type="button" value="Finałowe pytanie" onclick="myfunction('final')">
+<div id="odpowiedz">
+    <input id="Exit" type="button" style="float: right; width: 30px; height: 30px;" value="X" onclick="closeWindow()">
+    <p id="paragraph">Fuga atque placeat ducimus illo saepe delectus. Expedita, vel? Non iure harum veritatis, dicta blanditiis minus vitae accusamus, aliquid, saepe error fuga!</p>
+    <br>
+    <input id="plus_1" type="button" value="Druzyna_1 +100" onclick="Dodaj(0)">
+    <input id="plus_2" type="button" value="Druzyna_2 +100" onclick="Dodaj(1)">
+    <input id="plus_3" type="button" value="Druzyna_3 +100" onclick="Dodaj(2)">
+    <input id="plus_4" type="button" value="Druzyna_4 +100" onclick="Dodaj(3)">
+    <input id="minus_1" type="button" value="Druzyna_1 -100"onclick="Minus(0)">
+    <input id="minus_2" type="button" value="Druzyna_2 -100"onclick="Minus(1)">
+    <input id="minus_3" type="button" value="Druzyna_3 -100"onclick="Minus(2)">
+    <input id="minus_4" type="button" value="Druzyna_4 -100"onclick="Minus(3)">
+    <input id="pokaz_odpowiedz" type="button" value="Pokaz odpowiedz" style="width: 350px; font-size: 30px;" onclick="pokaz_odp()">
+</div>
+
+</main>
+<script src="script.js"></script> 
+</body>
+</html>
