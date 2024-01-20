@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+    <center>
 <main id="main_1">
 
 <div id="container">
@@ -80,12 +81,9 @@
 </div>
 <div id="buttons" style="float: right;">
     <center>
- 
-   <button style=' width: 200px; height: 50px;' onclick="next_round()">Nastepna runda</button><br>
-    <!--   <button style="width: 50px; height: 40px;">Film</button><button style="width: 50px; height: 40px;" onclick="playMusic()">Audio</button>
-   
-        --->
-     <p style="font-size: 12px;">Tlo autorstwa coolvector<br> na Freepik.</p>
+    <button style=' width: 200px; height: 50px;' onclick="next_round()">Następna runda</button><br>
+    <button style="width: 50px; height: 40px; font-size: 23px;" onclick="startTime()"id='clock'>⌛</button>
+    <p style="font-size: 12px;">Tlo autorstwa coolvector<br> na Freepik.</p>
 </center>
 </div>
 <h1 id="naglowek_final">Naglowek finalowy</h1>
@@ -102,10 +100,12 @@
     <input id="minus_2" type="button" value="Druzyna_2 -100"onclick="Minus(1)">
     <input id="minus_3" type="button" value="Druzyna_3 -100"onclick="Minus(2)">
     <input id="minus_4" type="button" value="Druzyna_4 -100"onclick="Minus(3)">
-    <input id="pokaz_odpowiedz" type="button" value="Pokaz odpowiedz" style="width: 350px; font-size: 30px;" onclick="pokaz_odp()">
+    <input id="pokaz_odpowiedz" type="button" value="Pokaz odpowiedz" style="width: 350px; font-size: 30px;" onclick="pokaz_odp()"><br>
+    <input id="szansa" type="button" value="Szansa dla innych" style="width: 250px; font-size: 20px; height: 60px;" onclick="block_users(true)">
 </div>
 
 </main>
 <script src="script.js"></script> 
+</center>
 </body>
 </html>

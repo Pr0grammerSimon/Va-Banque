@@ -2,7 +2,7 @@
 let naglowki = [['naglowek1_1','naglowek1_2','naglowek1_3','naglowek1_4','naglowek1_5'],['naglowek2_1','naglowek2_2','naglowek2_3','naglowek2_4','naglowek2_5'],'Kategoria Finalowego pytanie']
 let pytania = [[
     {
-        '1_100':['W tym jezyku do tworzenia konstruktora uzywasz __init__() ','odp1'],
+        '1_100':['Pytanie1','odp1'],
         '1_200':['Pytanie2','odp2'],
         '1_300':['Pytanie3','odp3'],
         '1_400':['Pytanie4','odp4'],
@@ -40,15 +40,15 @@ let pytania = [[
 ],
 [
     {
-        '1_100':['W tym jezyku do tworzenia kons ','odp1'],
+        '1_100':['Pytanie1','odp1'],
         '1_200':['Pytanie2','odp2'],
         '1_300':['Pytanie3','odp3'],
         '1_400':['Pytanie4','odp4'],
         '1_500':['Pytanie5','odp5']
     },
     {
-        '2_100':['Pytanie21','odp1'],
-        '2_200':['Pytanie22','odp22'],
+        '2_100':['Pytanie1','odp1'],
+        '2_200':['Pytanie2','odp22'],
         '2_300':['Pytanie3','odp3'],
         '2_400':['Pytanie4','odp4'],
         '2_500':['Pytanie5','odp5']
@@ -86,8 +86,22 @@ let wynik = 0;
 let okno_otwarte = false;
 let pytanie_usun = '';
 let aktualne_pytanie = '';
-let osoby = [['1 Osoba',0],['2 Osoba',0],['3 Osoba',0],['4 Osoba',0]]
-
+let osoby = [['1 Osoba',0,false,false],['2 Osoba',0,false,false],['3 Osoba',0,false,false],['4 Osoba',0,false,false]]
+let buttons = document.getElementsByTagName('input');
+/*
+buttons = Array.prototype.slice.call(buttons);
+console.log(buttons);
+buttons.forEach(element => {
+    element.onmouseover = function(){
+        if (element.type == 'button'){
+            console.log(element);
+            if (element.style.backgroundImage == 'Images/button.webp'){
+                element.style.opacity = '0.7';
+            }
+        }
+    };
+});
+*/
 function aktualizuj_naglowki(){
     //console.log('aktualizacja naglowkow!')
     if (tura < 3){
@@ -142,6 +156,10 @@ function closeWindow(){
     const pytanie = document.getElementById(aktualne_pytanie);
     pytanie.style.opacity = "0";
     okno_otwarte = false;
+    for (let i=0; i<4;i++){
+        osoby[i][2] = false;
+        osoby[i][3] = false;
+    }
     if (tura == 3){
         pytanie.style.opacity = '1';
         //document.getElementById('naglowek_final').style.display = 'None';
@@ -149,13 +167,17 @@ function closeWindow(){
 }
 
 function openWindow(pytanie){
+    color_buttons();
     okno_otwarte = true;
     const window = document.getElementById('odpowiedz');
     let paragraf = document.getElementById("paragraph");
+    document.getElementById('szansa').style.display = 'None';
     paragraf.innerHTML = pytanie[0];
-    document.getElementById('pokaz_odpowiedz').value = "Pokaż odpowiedź"
+    document.getElementById('pokaz_odpowiedz').value = "Pokaż odpowiedź";
     if (tura < 3){
     for (let i = 1; i < 5; i++){
+        osoby[i-1][3] = false;
+        osoby[i-1][2] = false;
         const button = document.getElementById("plus_"+i);
         const button2 = document.getElementById("minus_"+i);
         button.value = osoby[i - 1][0] + "\n +" + (Number(aktualne_pytanie.slice(2))*tura);
@@ -186,12 +208,43 @@ function edit_name(name){
 }
 
 function Dodaj(druzyna){
-    osoby[druzyna][1] += Number(aktualne_pytanie.slice(2)) * tura;
+    if (!osoby[druzyna][2]){
+        osoby[druzyna][2] = true;
+        osoby[druzyna][3] = true;
+        block_users();
+        color_buttons();
+        osoby[druzyna][1] += Number(aktualne_pytanie.slice(2)) * tura;
+        let moze = false;
+        osoby.forEach(element => {
+            if (element[3] == false){
+                moze = true;
+            }
+        });
+        if (moze){
+            document.getElementById('szansa').style.display = 'unset';
+        }
+        
+    }
     //console.log(Number(aktualne_pytanie.slice(2)));
     update_names();
 }
 function Minus(druzyna){
-    osoby[druzyna][1] -= Number(aktualne_pytanie.slice(2)) * tura;
+    if (osoby[druzyna][2] == false){
+        osoby[druzyna][2] = true;
+        osoby[druzyna][3] = true;
+        block_users();
+        color_buttons();
+        osoby[druzyna][1] -= Number(aktualne_pytanie.slice(2)) * tura;
+        let moze = false;
+        osoby.forEach(element => {
+            if (element[3] == false){
+                moze = true;
+            }
+        });
+        if (moze){
+            document.getElementById('szansa').style.display = 'unset';
+        }
+    }
     //console.log(Number(aktualne_pytanie.slice(2)));
     update_names();
 }
@@ -250,3 +303,57 @@ function next_round(){
         document.getElementById('final').style.display = 'block';
     }}}
 }
+
+
+
+
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+let zegar_on = false;
+
+async function startTime(){
+    if (zegar_on == false){
+    zegar_on = true
+    zegar = document.getElementById('clock');
+    for (let i=10; i>0; i--){
+        zegar.innerHTML = i;
+        await sleep(1000)
+        console.log(i)
+
+    }
+    zegar.innerHTML = '⌛';
+    zegar_on = false
+}}
+
+function block_users(szansa=false){
+    color_buttons()
+    if (szansa){
+        document.getElementById('szansa').style.display = 'None';
+        for (let i=0; i < 4; i++){
+            if (!osoby[i][3]){
+                osoby[i][2] = false;
+            }
+        }
+    }
+    else{
+        for (let i=0; i < 4; i++){
+            osoby[i][2] = true;
+        }
+    }
+}
+
+
+function color_buttons(){
+    for (let i = 1; i<5; i++){
+        if (osoby[i-1][3]){
+            console.log('??');
+            document.getElementById('plus_'+i).style.backgroundImage = 'url(Images/button3.webp)';
+            document.getElementById('minus_'+i).style.backgroundImage = 'url(Images/button3.webp)';
+        }
+        else{
+            document.getElementById('plus_'+i).style.backgroundImage = 'url(Images/button.webp)';
+            document.getElementById('minus_'+i).style.backgroundImage = 'url(Images/button.webp)';
+        }
+    }
+}
+
+
